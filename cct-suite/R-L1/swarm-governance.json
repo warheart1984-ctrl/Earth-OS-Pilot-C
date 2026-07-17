@@ -1,0 +1,61 @@
+{
+  "suite_id": "CCT-RL1",
+  "level": "R-L1",
+  "description": "Swarm Governance — Multi-agent coordination and resource collection within constitutional boundaries",
+  "tests": [
+    {
+      "id": "RL1-001",
+      "description": "Grid initialized with correct dimensions",
+      "input": { "width": 10, "height": 10 },
+      "expected": { "width": 10, "height": 10, "agents": [], "resources": [] }
+    },
+    {
+      "id": "RL1-002",
+      "description": "Agent added and positioned correctly",
+      "input": {
+        "agent": { "agent_id": "agent-1", "role": "miner", "capabilities": ["dig"], "position": { "x": 0, "y": 0 }, "token_id": "tok-001" }
+      },
+      "expected": "agent_added"
+    },
+    {
+      "id": "RL1-003",
+      "description": "Agent movement within grid bounds",
+      "input": {
+        "agent_id": "agent-1", "start": { "x": 1, "y": 1 }, "dx": 2, "dy": 3
+      },
+      "expected": { "x": 3, "y": 4 }
+    },
+    {
+      "id": "RL1-004",
+      "description": "Out-of-bounds movement rejected",
+      "input": {
+        "agent_id": "agent-1", "start": { "x": 0, "y": 0 }, "dx": -1, "dy": 0
+      },
+      "expected": "rejected"
+    },
+    {
+      "id": "RL1-005",
+      "description": "Miner collects resource from same tile",
+      "input": {
+        "agent": { "agent_id": "miner-1", "role": "miner", "capabilities": ["dig"], "position": { "x": 3, "y": 3 }, "token_id": "tok-001" },
+        "resource": { "x": 3, "y": 3, "type": "gold" }
+      },
+      "expected": "collected"
+    },
+    {
+      "id": "RL1-006",
+      "description": "Non-miner cannot collect resources",
+      "input": {
+        "agent": { "agent_id": "trans-1", "role": "transporter", "capabilities": ["carry"], "position": { "x": 3, "y": 3 }, "token_id": "tok-002" },
+        "resource": { "x": 3, "y": 3, "type": "gold" }
+      },
+      "expected": "rejected"
+    },
+    {
+      "id": "RL1-007",
+      "description": "getState returns immutable snapshot",
+      "input": { "width": 10, "height": 10 },
+      "expected": "immutable"
+    }
+  ]
+}

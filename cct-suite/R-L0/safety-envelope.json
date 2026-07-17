@@ -1,0 +1,101 @@
+{
+  "suite_id": "CCT-RL0",
+  "level": "R-L0",
+  "description": "Safety Envelope Enforcement — All robot actions MUST pass safety contract validation before actuation",
+  "tests": [
+    {
+      "id": "RL0-001",
+      "description": "Register safety envelope and validate allowed action",
+      "input": {
+        "envelope_id": "env-001",
+        "robot_id": "robot-1",
+        "contracts": [],
+        "valid_from": 0,
+        "valid_until": 1000,
+        "signature": "sha3-256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "action": { "type": "move", "hasEvidence": true, "hasGovernance": true },
+      "expected": "allowed"
+    },
+    {
+      "id": "RL0-002",
+      "description": "Block actuation when evidence contract violated",
+      "input": {
+        "envelope_id": "env-002",
+        "robot_id": "robot-1",
+        "contracts": [{
+          "contract_id": "C-EVIDENCE-001",
+          "type": "NO_ACTUATION_WITHOUT_EVIDENCE",
+          "severity": "CRITICAL",
+          "condition": "evidence required",
+          "consequence": "block"
+        }],
+        "valid_from": 0,
+        "valid_until": 1000,
+        "signature": "sha3-256:1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "action": { "type": "move", "hasEvidence": false, "hasGovernance": true },
+      "expected": "blocked"
+    },
+    {
+      "id": "RL0-003",
+      "description": "Block actuation when governance contract violated",
+      "input": {
+        "envelope_id": "env-003",
+        "robot_id": "robot-1",
+        "contracts": [{
+          "contract_id": "C-GOV-001",
+          "type": "NO_ACTUATION_WITHOUT_GOVERNANCE",
+          "severity": "CRITICAL",
+          "condition": "governance required",
+          "consequence": "block"
+        }],
+        "valid_from": 0,
+        "valid_until": 1000,
+        "signature": "sha3-256:2222222222222222222222222222222222222222222222222222222222222222"
+      },
+      "action": { "type": "move", "hasEvidence": true, "hasGovernance": false },
+      "expected": "blocked"
+    },
+    {
+      "id": "RL0-004",
+      "description": "Emergency stop overrides all contracts",
+      "input": {
+        "envelope_id": "env-004",
+        "robot_id": "robot-1",
+        "contracts": [{
+          "contract_id": "C-ESTOP-001",
+          "type": "EMERGENCY_STOP_OVERRIDES_ALL",
+          "severity": "CRITICAL",
+          "condition": "emergency stop engaged",
+          "consequence": "stop all actuation"
+        }],
+        "valid_from": 0,
+        "valid_until": 1000,
+        "signature": "sha3-256:3333333333333333333333333333333333333333333333333333333333333333"
+      },
+      "action": { "type": "move", "hasEvidence": true, "hasGovernance": true },
+      "expected": "blocked"
+    },
+    {
+      "id": "RL0-005",
+      "description": "Envelopes scoped to specific robot — other robots unaffected",
+      "input": {
+        "envelope_id": "env-005",
+        "robot_id": "robot-2",
+        "contracts": [{
+          "contract_id": "C-EVIDENCE-002",
+          "type": "NO_ACTUATION_WITHOUT_EVIDENCE",
+          "severity": "CRITICAL",
+          "condition": "evidence required",
+          "consequence": "block"
+        }],
+        "valid_from": 0,
+        "valid_until": 1000,
+        "signature": "sha3-256:4444444444444444444444444444444444444444444444444444444444444444"
+      },
+      "action": { "type": "move", "hasEvidence": false, "hasGovernance": false, "robot_id": "robot-1" },
+      "expected": "allowed"
+    }
+  ]
+}

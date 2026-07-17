@@ -1,0 +1,63 @@
+[
+  {
+    "vector_id": "rv-safety-001",
+    "description": "Register safety envelope, check allowed action, verify deterministic",
+    "steps": [
+      { "op": "register_envelope", "envelope_id": "env-001", "robot_id": "robot-1", "contracts": [] },
+      { "op": "check_action", "robot_id": "robot-1", "action_type": "move", "hasEvidence": true, "hasGovernance": true, "expected": "allowed" }
+    ]
+  },
+  {
+    "vector_id": "rv-safety-002",
+    "description": "Evidence contract violation blocks action deterministically",
+    "steps": [
+      { "op": "register_envelope", "envelope_id": "env-002", "robot_id": "robot-1", "contracts": [{"type": "NO_ACTUATION_WITHOUT_EVIDENCE"}] },
+      { "op": "check_action", "robot_id": "robot-1", "action_type": "move", "hasEvidence": false, "hasGovernance": true, "expected": "blocked" }
+    ]
+  },
+  {
+    "vector_id": "rv-safety-003",
+    "description": "Governance contract violation blocks action deterministically",
+    "steps": [
+      { "op": "register_envelope", "envelope_id": "env-003", "robot_id": "robot-1", "contracts": [{"type": "NO_ACTUATION_WITHOUT_GOVERNANCE"}] },
+      { "op": "check_action", "robot_id": "robot-1", "action_type": "move", "hasEvidence": true, "hasGovernance": false, "expected": "blocked" }
+    ]
+  },
+  {
+    "vector_id": "rv-safety-004",
+    "description": "Emergency stop blocks even when all conditions met",
+    "steps": [
+      { "op": "register_envelope", "envelope_id": "env-004", "robot_id": "robot-1", "contracts": [{"type": "EMERGENCY_STOP_OVERRIDES_ALL"}] },
+      { "op": "check_action", "robot_id": "robot-1", "action_type": "move", "hasEvidence": true, "hasGovernance": true, "expected": "blocked" }
+    ]
+  },
+  {
+    "vector_id": "rv-grid-001",
+    "description": "Grid world agent movement and resource collection",
+    "steps": [
+      { "op": "create_grid", "width": 10, "height": 10 },
+      { "op": "add_agent", "agent_id": "miner-1", "role": "miner", "x": 0, "y": 0 },
+      { "op": "move_agent", "agent_id": "miner-1", "dx": 3, "dy": 3, "expected": { "x": 3, "y": 3 } },
+      { "op": "add_resource", "x": 3, "y": 3, "type": "gold" },
+      { "op": "collect_resource", "agent_id": "miner-1", "expected": true }
+    ]
+  },
+  {
+    "vector_id": "rv-grid-002",
+    "description": "Out-of-bounds movement rejected",
+    "steps": [
+      { "op": "create_grid", "width": 5, "height": 5 },
+      { "op": "add_agent", "agent_id": "agent-1", "role": "miner", "x": 0, "y": 0 },
+      { "op": "move_agent", "agent_id": "agent-1", "dx": -1, "dy": 0, "expected": false }
+    ]
+  },
+  {
+    "vector_id": "rv-audit-001",
+    "description": "Audit log hash chain integrity",
+    "steps": [
+      { "op": "check_action", "robot_id": "robot-1", "action_type": "move", "hasEvidence": true, "hasGovernance": true, "expected": "allowed" },
+      { "op": "check_action", "robot_id": "robot-2", "action_type": "rotate", "hasEvidence": false, "hasGovernance": true, "expected": "blocked" },
+      { "op": "verify_audit_chain", "expected": true }
+    ]
+  }
+]

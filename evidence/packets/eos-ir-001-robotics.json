@@ -1,0 +1,22 @@
+{
+  "evidence_packet_id": "EOS-IR-001-PILOT-C-001",
+  "implementation_id": "earthos-pilot-c@1.0.0",
+  "commit_hash": "e72b21d4a712b3d3a1a2aee55db963050a9ae00c",
+  "generated_at": "2026-07-17T15:30:00.000Z",
+  "conformance_levels": ["R-L0", "R-L1"],
+  "test_results": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "suites": ["SafetyEnforcementEngine", "GridWorldSimulator"]
+  },
+  "replay_vectors": ["rv-safety-001", "rv-safety-002", "rv-safety-003", "rv-safety-004", "rv-grid-001", "rv-grid-002", "rv-audit-001"],
+  "safety_contracts_enforced": ["NO_ACTUATION_WITHOUT_EVIDENCE", "NO_ACTUATION_WITHOUT_GOVERNANCE", "EMERGENCY_STOP_OVERRIDES_ALL"],
+  "audit_log_hash_chain_valid": true,
+  "limitations": [
+    "10 empty stubs — hardware-facing components not implemented",
+    "No CCT formal suites — R-L0/R-L1 defined but not codified as test harnesses",
+    "No hardware or ROS 2 integration"
+  ],
+  "signature": "sha3-256:0000000000000000000000000000000000000000000000000000000000000000"
+}

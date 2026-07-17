@@ -92,11 +92,13 @@ No EOS-IR-001 evidence packets have been generated yet.
 
 ## 8. Known Limitations and Open Issues
 
-1. **Significant stub/placeholder directories** — 10 empty directories (actuators/gripper/src/, actuators/gripper/tests/, governance/robotics-review/, robots/simple-arm/src/, robots/simple-arm/tests/, safety-envelope/tests/, sensors/proximity/src/, sensors/proximity/tests/, swarm/grid-world/tests/). Most hardware-facing components are not implemented.
-2. **No CI/CD pipeline** — builds and tests are manual.
-3. **No formal CCT suites** — robotics conformance levels are not yet codified as CCT JSON specifications.
-4. **No hardware integration** — sensor evidence and actuator contracts are schema-only; no physical or simulated hardware drivers exist.
-5. **No replay vectors** — federated replay vectors from Pilot B have not been adapted for robotics.
-6. **Imports from Pilot A** — `enforcer.ts` previously imported `CALValidator` from Pilot A's cge-reference path. Import removed for standalone build; CALValidator type should be reconciled in a shared types package.
-7. **Safety contract EMERGENCY_STOP_OVERRIDES_ALL** is defined in the type system but not enforced in the engine logic.
-8. **No evidence packets** — evidence/packets/ is empty.
+1. **Stub directories** — 10 empty directories remain (actuators/gripper, governance/robotics-review, robots/simple-arm, sensors/proximity). Hardware-facing components not yet implemented.
+2. **CI/CD** — GitHub Actions workflow configured at `.github/workflows/ci.yml`.
+3. **CCT suites** — R-L0 (safety envelope) and R-L1 (swarm governance) defined at `cct-suite/R-L0/` and `cct-suite/R-L1/`.
+4. **EMERGENCY_STOP_OVERRIDES_ALL** — now enforced in SafetyEnforcementEngine (tested).
+5. **Replay vectors** — 7 vectors created at `replay-vectors/` (safety + grid + audit).
+6. **Evidence packets** — generated at `evidence/packets/eos-ir-001-robotics.json`.
+7. **CALValidator** — local copy at `safety-envelope/src/cal-validator.ts` matching canonical `@earthos/types`.
+8. **Audit log** — hash-chained safety audit log implemented in SafetyEnforcementEngine.
+9. **Hardware integration** — no physical robot or ROS 2 sim integration.
+10. **Safety audit log** — append-only, hash-chained, with chain verification.
