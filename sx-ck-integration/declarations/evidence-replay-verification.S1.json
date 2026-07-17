@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://earthos-pilot-c/sx-ck-integration/declarations/evidence-replay-verification.S1.json",
+  "skill_id": "evidence-replay-verification",
+  "version": "1.0",
+  "domain": "gov-evidence",
+  "declared_capabilities": [
+    "evidence_replay_verification",
+    "robotics_evidence_validation",
+    "temporal_evidence_replay_management",
+    "deterministic_replay_compliance"
+  ],
+  "conformance_suite": "SKILL-CONFORMANCE-SUITE.R1",
+  "dependencies": [
+    "temporal-governance-compliance",
+    "constitutional-kernel-integration"
+  ],
+  "boundary_constraints": [
+    "MUST_VERIFY_EVIDENCE_REPLAY",
+    "MUST_PRODUCE_EVIDENCE_RECEIPTS",
+    "MUST_ENSURE_DETERMINISTIC_REPLAY"
+  ],
+  "steward": "warheart1984-ctrl",
+  "mandate_ref": "EARTHOS-PILOT-C-SXCK-GOVERNANCE-MANDATE",
+  "evidence_receipt": {
+    "receipt_id": "550e8400-e29b-41d4-a716-446655440008",
+    "signer": "skill-orchestrator",
+    "signature": "evidence-replay-verification-skill-declaration-signature",
+    "hash": "ghi456jkl789",
+    "timestamp": "2026-07-17T10:00:00Z"
+  },
+  "temporal_validity": {
+    "start": "2026-07-17T00:00:00Z",
+    "end": null
+  }
+}
