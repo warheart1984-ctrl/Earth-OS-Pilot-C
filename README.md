@@ -89,6 +89,17 @@ Every swarm decision (move, collect, assign, revoke) is:
 
 ## CIEMS Alignment
 
+CIEMS (Constitutional Intent, Evidence & Mandate System) is the governing framework for this pilot. The canonical CIEMS definition is maintained at `.codex/cse/specs/ftg/docs/CIEMS-CANONICAL-STANDARD.md`.
+
+| CIEMS Layer | EarthOS Artifact |
+|-------------|-----------------|
+| Constitution | CESF v1.2 Core Principles |
+| Specification | CESF v1.2 Normative Standards (Sections 2-6: federated governance; Section 7: robotics safety) |
+| Schema | CAS, CPBA, CPRM schemas + actuator/sensor contracts |
+| Conformance | CCT Ω∞ L5 + safety envelope validation |
+| Implementation | Constitutional Robotics CGE |
+| Deployment | Pilot C robotics/swarm network |
+
 Swarm federation maps to CESF v1.2 Sections 2-6 (federated governance through swarm-level treaties). Swarm robotics governance maps to CESF v1.2 Section 7 (actuator contracts, sensor evidence, safety envelope).
 
 ### Substrate → Substration → Promotion Model

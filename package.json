@@ -1,0 +1,14 @@
+{
+  "name": "@earthos/pilot-c",
+  "version": "1.0.0",
+  "description": "EarthOS Pilot C - Constitutional Robotics (Evidence Package v1)",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

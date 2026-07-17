@@ -1,5 +1,3 @@
-import type { CALValidator } from '../../cge-reference/src/cal-validator.js';
-
 export interface SafetyContract {
   contract_id: string;
   type: 'NO_ACTUATION_WITHOUT_EVIDENCE' | 'NO_ACTUATION_WITHOUT_GOVERNANCE' | 'EMERGENCY_STOP_OVERRIDES_ALL';
