@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://earthos-pilot-c/skills/declarations/risk-weighted-governance.S1.json",
+  "skill_id": "risk-weighted-governance",
+  "version": "1.0",
+  "domain": "gov-safety",
+  "declared_capabilities": [
+    "risk_assessment",
+    "weighted_decision_making",
+    "safety_critical_governance",
+    "risk_threshold_enforcement"
+  ],
+  "conformance_suite": "SKILL-CONFORMANCE-SUITE.R1",
+  "dependencies": [
+    "emergent-behavior-detection",
+    "self-awareness-boundary"
+  ],
+  "boundary_constraints": [
+    "MUST_ENFORCE_SAFETY_CRITICAL_RULES",
+    "MUST_PRODUCE_EVIDENCE_RECEIPTS",
+    "MUST_OPERATE_WITHIN_SAFETY_ENVELOPE"
+  ],
+  "steward": "warheart1984-ctrl",
+  "mandate_ref": "EARTHOS-PILOT-C-GOVERNANCE-MANDATE",
+  "evidence_receipt": {
+    "receipt_id": "550e8400-e29b-41d4-a716-446655440004",
+    "signer": "skill-orchestrator",
+    "signature": "risk-weighted-governance-skill-declaration-signature",
+    "hash": "pqr678stu901",
+    "timestamp": "2026-07-17T10:00:00Z"
+  },
+  "temporal_validity": {
+    "start": "2026-07-17T00:00:00Z",
+    "end": null
+  }
+}
