@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cse.constitutional.standards/robot-actuator/v1.0",
+  "title": "Constitutional Robot Actuator Contract v1.0",
+  "type": "object",
+  "properties": {
+    "actuator_id": { "type": "string" },
+    "robot_id": { "type": "string" },
+    "action_type": { "type": "string" },
+    "parameters": { "type": "object" },
+    "authorization_token_id": { "type": "string" },
+    "safety_envelope_id": { "type": "string" },
+    "sensor_evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "executed_at": { "type": "integer" },
+    "actuator_signature": { "type": "string" }
+  },
+  "required": ["actuator_id", "robot_id", "action_type", "authorization_token_id", "safety_envelope_id"]
+}

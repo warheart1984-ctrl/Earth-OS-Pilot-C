@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cse.constitutional.standards/swarm-governance/v1.0",
+  "title": "Constitutional Swarm Governance v1.0",
+  "type": "object",
+  "properties": {
+    "swarm_id": { "type": "string" },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "agent_id": { "type": "string" },
+          "role": { "type": "string" },
+          "capabilities": { "type": "array", "items": { "type": "string" } },
+          "authorization_token_id": { "type": "string" }
+        },
+        "required": ["agent_id", "role", "capabilities"]
+      }
+    },
+    "swarm_authority_token_id": { "type": "string" },
+    "safety_envelope_id": { "type": "string" },
+    "governance_rules": {
+      "type": "object",
+      "properties": {
+        "consensus_required": { "type": "boolean" },
+        "min_approval_ratio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "replay_required": { "type": "boolean" }
+      }
+    }
+  },
+  "required": ["swarm_id", "members", "swarm_authority_token_id"]
+}
